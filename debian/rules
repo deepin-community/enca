@@ -3,12 +3,12 @@
 override_dh_auto_configure:
 	dh_auto_configure -- \
 	       --libexecdir=\$${prefix}/lib \
-	       --with-librecode \
 	       --with-libiconv \
-	       --disable-rpath
+	       --disable-rpath \
+	       MKTEMP_PROG=/bin/mktemp
 
 override_dh_strip:
-	dh_strip --dbg-package=libenca-dbg
+	dh_strip --dbgsym-migration='libenca-dbg (<< 1.19-2~)'
 
 %:
-	dh $@ --with autoreconf
+	dh $@
